@@ -475,7 +475,7 @@ class ChatPanel(DirectFrame, FSM):
             if wantReceiver:
                 useName = plainName
             else:
-                useName = '\x1Super\x1.\x2 ' + plainName
+                useName = '\x01Super\x01.\x02 ' + plainName
         elif message.getTalkType() == INFO_OPEN:
             if message.getSenderAvatarId() == localAvatar.doId:
                 useName = ''

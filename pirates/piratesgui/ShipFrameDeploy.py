@@ -15,10 +15,9 @@ class ShipFrameDeploy(ShipFrameSelect):
     def __init__(self, parent, **kw):
         optiondefs = (('avatarName', '', None),)
         self.defineoptions(kw, optiondefs)
-        ShipFrameSelect.__init__(self, parent, **None)
+        ShipFrameSelect.__init__(self, parent, **kw)
         self.initialiseoptions(ShipFrameDeploy)
 
-    
     def enableStats(self, shipName = '', shipClass = 0, mastInfo = [], hp = 0, sp = 0, cargo = 0, crew = 0, time = 0):
         hullInfo = ShipGlobals.getShipConfig(shipClass)
         self.shipClass = shipClass
@@ -37,24 +36,21 @@ class ShipFrameDeploy(ShipFrameSelect):
         stateStr = PLocalizer.ShipAtSea
         if hp <= 0:
             self.button['state'] = DGG.DISABLED
-            stateStr = '\x1red\x1%s\x2' % (PLocalizer.ShipSunk,)
+            stateStr = '\x01red\x01%s\x02' % (PLocalizer.ShipSunk,)
             self['shipColorScale'] = VBase4(0.80000000000000004, 0.29999999999999999, 0.29999999999999999, 1)
         elif crew >= hullInfo['maxCrew']:
             self.button['state'] = DGG.DISABLED
-            stateStr = '\x1red\x1%s\x2' % (PLocalizer.ShipFull,)
+            stateStr = '\x01red\x01%s\x02' % (PLocalizer.ShipFull,)
             self['shipColorScale'] = VBase4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1)
         else:
             self.button['state'] = DGG.NORMAL
         if typeStr:
-            self.typeLabel['text'] = '\x1smallCaps\x1(%s)\x2' % typeStr
-        
+            self.typeLabel['text'] = '\x01smallCaps\x01(%s)\x02' % typeStr
 
-    
     def setCustomization(self, customHull, customRigging, customPattern, customLogo):
         ShipFrameSelect.setCustomization(self, customHull, customRigging, customPattern, customLogo)
         self.snapShot.setCustomization(customHull, customRigging, customPattern, customLogo)
 
-    
     def enableStatsOV(self, shipOV):
         self.snapShot = ShipSnapshot(self, shipOV, self['siegeTeam'], pos = self['snapShotPos'])
         typeStr = ''
@@ -67,7 +63,7 @@ class ShipFrameDeploy(ShipFrameSelect):
         if hp <= 0:
             self.button['state'] = DGG.DISABLED
             self.button['text'] = PLocalizer.DeployShip
-            stateStr = '\x1Ired\x1%s\x2' % PLocalizer.ShipSunk
+            stateStr = '\x01Ired\x01%s\x02' % PLocalizer.ShipSunk
             self['shipColorScale'] = VBase4(1, 0.40000000000000002, 0.40000000000000002, 1)
             self.button['image3_color'] = VBase4(*PiratesGuiGlobals.ButtonColor3[2])
             self.button['geom3_color'] = VBase4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 0.40000000000000002)
@@ -77,13 +73,13 @@ class ShipFrameDeploy(ShipFrameSelect):
             self.button['state'] = DGG.DISABLED
             self.button['text'] = PLocalizer.BoardShip
             self.button['helpText'] = PLocalizer.ShipFull
-            stateStr = '\x1red\x1%s\x2' % (PLocalizer.ShipFull,)
+            stateStr = '\x01red\x01%s\x02' % (PLocalizer.ShipFull,)
             self['shipColorScale'] = VBase4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1)
         elif localAvatar.getActiveShipId() and shipOV.doId != localAvatar.getActiveShipId():
             self.button['state'] = DGG.DISABLED
             self.button['text'] = PLocalizer.DeployShip
             self.button['helpText'] = PLocalizer.OtherShipOut
-            stateStr = '\x1Ired\x1%s\x2' % PLocalizer.OtherShipOut
+            stateStr = '\x01Ired\x01%s\x02' % PLocalizer.OtherShipOut
             self['shipColorScale'] = VBase4(0.40000000000000002, 0.40000000000000002, 0.40000000000000002, 1)
         elif shipOV.state in 'Off':
             self.button['state'] = DGG.NORMAL
@@ -107,12 +103,9 @@ class ShipFrameDeploy(ShipFrameSelect):
                 self.button['geom_scale'] = 0.14999999999999999
                 self.button['geom_color'] = Vec4(0.69999999999999996, 0.69999999999999996, 0.69999999999999996, 1.0)
                 subgui.removeNode()
-            
-        
-        if typeStr:
-            self.typeLabel['text'] = '\x1smallCaps\x1(%s)\x2' % typeStr
-        
 
+        if typeStr:
+            self.typeLabel['text'] = '\x01smallCaps\x01(%s)\x02' % typeStr
     
     def addCrewMemberName(self, name):
         if name not in self.snapShot['crewNames']:

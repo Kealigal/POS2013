@@ -19,6 +19,9 @@ model-path resources/phase_4
 model-path resources/phase_5
 default-model-extension .bam
 
+# Loading Screen:
+loading-screen 1
+
 # Exclude:
 exclude-texture-scale BardiT*
 exclude-texture-scale BriosoPro*
