@@ -7761,35 +7761,34 @@ def getFemaleLastnameSuffixes():
 
 
 def enumeratePirateNames():
-    firstGeneric = PirateNames_FirstNamesGeneric[:]
-    firstMale = PirateNames_FirstNamesMale[:]
-    firstFemale = PirateNames_FirstNamesFemale[:]
+    firstGeneric = PirateNames_FirstNamesGeneric[: ]
+    firstMale = PirateNames_FirstNamesMale[: ]
+    firstFemale = PirateNames_FirstNamesFemale[: ]
     lastGeneric = []
     lastMale = []
     lastFemale = []
-    for None in PirateNames_LastNamePrefixesGeneric + PirateNames_LastNamePrefixesCapped:
-        pre = None
-    
-    for None in PirateNames_LastNamePrefixesGeneric + PirateNames_LastNamePrefixesCapped:
-        pre = None
-    
-    for None in PirateNames_LastNamePrefixesMale:
-        pre = None
-    
-    for None in PirateNames_LastNamePrefixesMale:
-        pre = None
-    
-    for None in PirateNames_LastNamePrefixesGeneric + PirateNames_LastNamePrefixesCapped:
-        pre = None
-    
-    for None in PirateNames_LastNamePrefixesFemale:
-        pre = None
-    
-    for None in PirateNames_LastNamePrefixesFemale:
-        pre = None
-    
-    return (firstGeneric, lastGeneric, firstMale, lastMale, firstFemale, lastFemale)
+    for pre in PirateNames_LastNamePrefixesGeneric + PirateNames_LastNamePrefixesCapped:
+        lastGeneric.extend((pre + suf for suf in PirateNames_LastNameSuffixesGeneric))
 
+    for pre in PirateNames_LastNamePrefixesGeneric + PirateNames_LastNamePrefixesCapped:
+        lastMale.extend((pre + suf for suf in PirateNames_LastNameSuffixesMale))
+
+    for pre in PirateNames_LastNamePrefixesMale:
+        lastMale.extend((pre + suf for suf in PirateNames_LastNameSuffixesGeneric))
+
+    for pre in PirateNames_LastNamePrefixesMale:
+        lastMale.extend((pre + suf for suf in PirateNames_LastNameSuffixesMale))
+
+    for pre in PirateNames_LastNamePrefixesGeneric + PirateNames_LastNamePrefixesCapped:
+        lastFemale.extend((pre + suf for suf in PirateNames_LastNameSuffixesFemale))
+
+    for pre in PirateNames_LastNamePrefixesFemale:
+        lastFemale.extend((pre + suf for suf in PirateNames_LastNameSuffixesGeneric))
+
+    for pre in PirateNames_LastNamePrefixesFemale:
+        lastFemale.extend((pre + suf for suf in PirateNames_LastNameSuffixesFemale))
+
+    return (firstGeneric, lastGeneric, firstMale, lastMale, firstFemale, lastFemale)
 
 def enumeratePirateNameTokens():
     import operator
@@ -7798,7 +7797,6 @@ def enumeratePirateNameTokens():
 
 def enumeratePirateNameTokensLower():
     nameTokens = enumeratePirateNameTokens
-    continue
     return [ token.lower() for token in enumeratePirateNameTokens() ]
 
 
@@ -8565,33 +8563,33 @@ CrewInviterCancel = lCancel
 CrewInviterStopBeingCrewed = 'Remove'
 CrewInviterYes = lYes
 CrewInviterNo = lNo
-CrewInviterTooMany = 'Your crew is full.\n\nYou will need to remove some crew members if you want to invite \x1gold\x1%s\x2.'
-CrewInviterNotYet = 'Would you like to invite \x1gold\x1%s\x2 to join your crew?'
+CrewInviterTooMany = 'Your crew is full.\n\nYou will need to remove some crew members if you want to invite \x01gold\x01%s\x02.'
+CrewInviterNotYet = 'Would you like to invite \x01gold\x01%s\x02 to join your crew?'
 CrewInviterCheckAvailability = 'Seeing if %s is available.'
-CrewInviterNotAvailable = '\x1gold\x1%s\x2 is busy right now; try again later.'
-CrewInviterWentAway = '\x1gold\x1%s\x2 went away.'
-CrewInviterAlready = '\x1gold\x1%s\x2 is already in your crew.'
-CrewInviterAlreadyInvited = '\x1gold\x1%s\x2 has already been invited.'
-CrewInviterRecentlyInvited = '\x1gold\x1%s\x2 has recently been invited to join your crew. Please wait a while before sending another invite.'
-CrewInviterAskingNPC = 'Asking \x1gold\x1%s\x2 to join your crew.'
-CrewInviterEndCrewship = 'Are you sure you want to kick \x1gold\x1%s\x2 out of your crew?'
-CrewInviterCrewedNoMore = '\x1gold\x1%s\x2 is no longer in your crew.'
+CrewInviterNotAvailable = '\x01gold\x01%s\x02 is busy right now; try again later.'
+CrewInviterWentAway = '\x01gold\x01%s\x02 went away.'
+CrewInviterAlready = '\x01gold\x01%s\x02 is already in your crew.'
+CrewInviterAlreadyInvited = '\x01gold\x01%s\x02 has already been invited.'
+CrewInviterRecentlyInvited = '\x01gold\x01%s\x02 has recently been invited to join your crew. Please wait a while before sending another invite.'
+CrewInviterAskingNPC = 'Asking \x01gold\x01%s\x02 to join your crew.'
+CrewInviterEndCrewship = 'Are you sure you want to kick \x01gold\x01%s\x02 out of your crew?'
+CrewInviterCrewedNoMore = '\x01gold\x01%s\x02 is no longer in your crew.'
 CrewInviterSelf = 'You are already in your own crew!'
 CrewInviterLeave = 'Are you sure you want to leave your crew?'
 CrewInviterLeft = 'You left the crew.'
-CrewInviterIgnored = '\x1gold\x1%s\x2 is ignoring you.'
+CrewInviterIgnored = '\x01gold\x01%s\x02 is ignoring you.'
 CrewInviterAsking = 'Asking %s to join your crew.'
 CrewInviterCrewSaidYes = '%s has joined your crew!'
 CrewInviterCrewSaidNo = '%s declined your crew invitation.'
-CrewInviterCrewSaidNoNewCrews = '\x1gold\x1%s\x2 is not looking for a new crew right now.'
-CrewInviterOtherTooMany = '\x1gold\x1%s\x2 has too many crew members already!'
-CrewInviterMaybe = '\x1gold\x1%s\x2 was unable to answer.'
+CrewInviterCrewSaidNoNewCrews = '\x01gold\x01%s\x02 is not looking for a new crew right now.'
+CrewInviterOtherTooMany = '\x01gold\x01%s\x02 has too many crew members already!'
+CrewInviterMaybe = '\x01gold\x01%s\x02 was unable to answer.'
 CrewInviterDown = 'Cannot join crews now.'
-CrewInviterInOtherCrew = 'Sorry \x1gold\x1%s\x2 is in a different crew.'
+CrewInviterInOtherCrew = 'Sorry \x01gold\x01%s\x02 is in a different crew.'
 CrewInviterNotCaption = 'Sorry you are not the caption of your crew.'
-CrewInviterNotCaption1 = 'Sorry only \x1gold\x1%s\x2 can invite new crew members.'
-CrewMatchInviteeInvitation = 'Would you like to join the crew of %s?\nThey are currently located in \x1gold\x1%s\x2.'
-CrewMatchInviteeInvitationNoLocation = 'Would you like to join the crew of \x1gold\x1%s\x2?'
+CrewInviterNotCaption1 = 'Sorry only \x01gold\x01%s\x02 can invite new crew members.'
+CrewMatchInviteeInvitation = 'Would you like to join the crew of %s?\nThey are currently located in \x01gold\x01%s\x02.'
+CrewMatchInviteeInvitationNoLocation = 'Would you like to join the crew of \x01gold\x01%s\x02'
 CrewMatchCrewFound = 'Crew Found'
 CrewMatchCrewLookout = 'Crew Lookout'
 CrewMatchNoCrewFound = 'Crew Matching is now active. Unfortunately, a crew could not be found. The search will continue.'
@@ -8631,12 +8629,12 @@ CrewMatchNewMemberRequestNo = lNo
 PrivateerAllTeamsFull = 'Both Privateer teams are full!\n\nYou can join another server or an existing Privateer crew.\n\nDo you wish to join an existing Privateer crew?'
 PrivateerSingleTeamFull = 'Sorry, this Privateer team is full!\n\nDo you wish to balance out the battle and join the opposition?'
 CrewHUDNoCrew = 'No Crew Bonus'
-CrewHUDCrewNearBy = 'Crew: \x1yellow\x1%s%%\x2 Bonus!'
+CrewHUDCrewNearBy = 'Crew: \x01yellow\x01%s%%\x02 Bonus!'
 CrewHUDCrewPanelButton = 'Toggle Crew HUD'
-CrewHUDDisconnect = '\x1slant\x1Disconnected\x2'
-CrewHUDRequest = '\x1slant\x1Crew Request\x2'
-CrewHUDPVP = '\x1slant\x1In PVP Match\x2'
-CrewHUDParlor = '\x1slant\x1In Parlor Game\x2'
+CrewHUDDisconnect = '\x01slant\x01Disconnected\x02'
+CrewHUDRequest = '\x01slant\x01Crew Request\x02'
+CrewHUDPVP = '\x01slant\x01In PVP Match\x02'
+CrewHUDParlor = '\x01slant\x01In Parlor Game\x02'
 CrewHUDAFK = 'AFK'
 CrewHUDPrivFrench = 'Privateering\nFrench Team'
 CrewHUDPrivSpanish = 'Privateering\nSpanish Team'
@@ -8931,7 +8929,7 @@ PlayTMNowHelp = 'Give it a shot alone'
 PlayTMLookout = BossBattleName + ' With Crew'
 PlayTMLookoutHelp = 'Find others to play with'
 PlayTMBlackPearlNotReady = 'The Black Pearl boss battle is coming soon!'
-PlayTMVelvetRope = '\x1smallCaps\x1Unlimited Access Members Only\x2'
+PlayTMVelvetRope = '\x01smallCaps\x01Unlimited Access Members Only\x02'
 Dowse = 'Use Dowsing Rod'
 DowsingRodNotAvailable = 'You cannot use the Dowsing Rod here.'
 DowsingRodWarmerFar = 'You are getting closer to the spot, but you are still very far away.'
@@ -9122,61 +9120,61 @@ def getHeadingScale(headingLevel):
 
 def makeHeadingString(str, headingLevel):
     if headingLevel == 1:
-        str = '\x1%s\x1%s\x2' % ('slant', str)
+        str = '\x01%s\x01%s\x02' % ('slant', str)
     elif headingLevel == 2:
-        str = '\x1%s\x1\x1%s\x1%s\x2\x2' % ('gold', 'smallCaps', str)
+        str = '\x01%s\x01\x01%s\x01%s\x02\x02' % ('gold', 'smallCaps', str)
     elif headingLevel == 3:
         str = str.upper()
-    
     return str
 
+
 TutorialPanelDialog = {
-    'seachestOpen': '\nClick on the \x1Ired\x1Sea Chest Icon\x2 to open it.',
-    'questPageOpen': '\nClick on the \x1Ired\x1Journal Icon\x2 to view your quests.',
-    'questPageClose': '\nThe journal shows what to do next.\nClick on the \x1Ired\x1Sea Chest Icon\x2 to close it.',
-    'boardShip': "\nPress \x5shiftButton\x5 to board Bo Beck's boat.",
-    'useCannon': '\nPress \x5shiftButton\x5 to use the cannon.',
-    'moveCannon': '\nHold down \x1Ired\x1Right Mouse Button\x2 then move the mouse to aim.',
-    'fireCannon': '\nClick \x1Ired\x1Left Mouse Button\x2 to shoot.',
-    'wreckInstruction': 'Hit the ship wreck 3 times. Hits so far \x1Ired\x1',
+    'seachestOpen': '\nClick on the \x01Ired\x01Sea Chest Icon\x02 to open it.',
+    'questPageOpen': '\nClick on the \x01Ired\x01Journal Icon\x02 to view your quests.',
+    'questPageClose': '\nThe journal shows what to do next.\nClick on the \x01Ired\x01Sea Chest Icon\x02 to close it.',
+    'boardShip': "\nPress \x05shiftButton\x05 to board Bo Beck's boat.",
+    'useCannon': '\nPress \x05shiftButton\x05 to use the cannon.',
+    'moveCannon': '\nHold down \x01Ired\x01Right Mouse Button\x02 then move the mouse to aim.',
+    'fireCannon': '\nClick \x01Ired\x01Left Mouse Button\x02 to shoot.',
+    'wreckInstruction': 'Hit the ship wreck 3 times. Hits so far \x01Ired\x01',
     'shipCombatInstruction': 'Shoot at the Ghost ship (hull) to sink it.',
-    'exitCannon': '\nPress \x1Ired\x1Escape\x2 to stop using the cannon.',
-    'leaveJail': '\nLeave the Jail. Press the \x1Ired\x1Arrow Keys\x2 or \x1Ired\x1WASD keys\x2 to move.',
+    'exitCannon': '\nPress \x01Ired\x01Escape\x02 to stop using the cannon.',
+    'leaveJail': '\nLeave the Jail. Press the \x01Ired\x01Arrow Keys\x02 or \x01Ired\x01WASD keys\x02 to move.',
     'showBlacksmith': 'Walk towards the light ray. Enter the Old Warehouse to get a sword.',
     'doCutlassTutorial': 'Would you like to learn how to use weapons?',
-    'drawSword': '\nClick on the \x1Ired\x1Sword Icon\x2 to draw your weapon.',
-    'attackSword': '\nClick with \x1Ired\x1Left Mouse Button\x2 to attack the dummy.',
-    'comboSword': '\nTo perform a combo, \x1Ired\x1Click\x2 to swing then \x1Ired\x1Click\x2 again at the end of your swing.  Timing is key!',
-    'cutlassLvl': '\nYou earned enough reputation to level up your cutlass.\nClick on the \x1Ired\x1Sea Chest Icon\x2 to open it.',
-    'cutlassSkillOpen': '\nClick on the \x1Ired\x1Skill Icon\x2 to view your skills.',
-    'cutlassSkillUnlock': '\nYou earned 1 Skill Point which can be used to unlock and improve skills. Click on the \x1Ired\x1Sweep Icon\x2 to unlock it.',
-    'cutlassDoneLvl': '\nSweep Skill Unlocked. \nClick on the \x1Ired\x1Sea Chest Icon\x2 to continue.',
-    'specialMenu': '\nClick the \x1\\Ired\x1Sweep Icon\x2.',
+    'drawSword': '\nClick on the \x01Ired\x01Sword Icon\x02 to draw your weapon.',
+    'attackSword': '\nClick with \x01Ired\x01Left Mouse Button\x02 to attack the dummy.',
+    'comboSword': '\nTo perform a combo, \x01Ired\x01Click\x02 to swing then \x01Ired\x01Click\x02 again at the end of your swing.  Timing is key!',
+    'cutlassLvl': '\nYou earned enough reputation to level up your cutlass.\nClick on the \x01Ired\x01Sea Chest Icon\x02 to open it.',
+    'cutlassSkillOpen': '\nClick on the \x01Ired\x01Skill Icon\x02 to view your skills.',
+    'cutlassSkillUnlock': '\nYou earned 1 Skill Point which can be used to unlock and improve skills. Click on the \x01Ired\x01Sweep Icon\x02 to unlock it.',
+    'cutlassDoneLvl': '\nSweep Skill Unlocked. \nClick on the \x01Ired\x01Sea Chest Icon\x02 to continue.',
+    'specialMenu': '\nClick the \x01\\Ired\x01Sweep Icon\x02.',
     'skillLearning': "As you level up you'll be able to unlock New Skills and gain more Weapons.",
-    'sheatheSword': '\nPress \x1Ired\x1Escape\x2 to put away your weapon.',
-    'showSkeleton': 'Defeat 3 \x1Ired\x1Undead Gravediggers\x2 in the \x1Ired\x1Graveyard\x2 before you visit Tia Dalma.',
-    'showJungleTia': '\nWalk through the \x1Ired\x1Tree Tunnel\x2 to visit Tia Dalma.',
+    'sheatheSword': '\nPress \x01Ired\x01Escape\x02 to put away your weapon.',
+    'showSkeleton': 'Defeat 3 \x01Ired\x01Undead Gravediggers\x02 in the \x01Ired\x01Graveyard\x02 before you visit Tia Dalma.',
+    'showJungleTia': '\nWalk through the \x01Ired\x01Tree Tunnel\x02 to visit Tia Dalma.',
     'receiveCompass': 'Would you like to learn how to use the compass?',
-    'compassActiveQuest': 'The \x1Iyellow\x1ARROW\x2 points to your quest goal.',
-    'compassIconsBearing': 'You are the \x1Iwhite\x1Arrow\x2 in the center. \nExits are shown as \x1Iwhite\x1RECTANGLES\x2.',
-    'compassIconsPeople': 'Enemies are shown in \x1Ired\x1RED\x2. Townfolk are shown in \x1Igreen\x1GREEN\x2. Other players are shown in \x1Iblue\x1BLUE\x2.',
-    'showNavy': "Defeat \x1Ired\x1Navy Soldiers\x2 to find the Black Pearl release orders.\nFollow the arrow towards the Governor's Mansion.",
-    'showGovMansion': "Enter the \x1Ired\x1Governor's Mansion\x2 to deliver release orders to Elizabeth Swann.",
-    'showDarby': 'Walk towards the light ray. \nFind \x1Ired\x1Darby Drydock\x2 to get a ship.',
-    'showDinghy': 'Use a \x1Ired\x1dinghy\x2 to launch your ship.',
-    'showBarbossa': "Sail to \x1Ired\x1Devil's Anvil\x2 to visit Barbossa.",
-    'pistolAim': '\nHold down \x1Ired\x1Right Mouse Button\x2 then move the mouse to aim at the monkey.',
+    'compassActiveQuest': 'The \x01Iyellow\x01ARROW\x02 points to your quest goal.',
+    'compassIconsBearing': 'You are the \x01Iwhite\x01Arrow\x02 in the center. \nExits are shown as \x01Iwhite\x01RECTANGLES\x02.',
+    'compassIconsPeople': 'Enemies are shown in \x01Ired\x01RED\x02. Townfolk are shown in \x01Igreen\x01GREEN\x02. Other players are shown in \x01Iblue\x01BLUE\x02.',
+    'showNavy': "Defeat \x01Ired\x01Navy Soldiers\x02 to find the Black Pearl release orders.\nFollow the arrow towards the Governor's Mansion.",
+    'showGovMansion': "Enter the \x01Ired\x01Governor's Mansion\x02 to deliver release orders to Elizabeth Swann.",
+    'showDarby': 'Walk towards the light ray. \nFind \x01Ired\x01Darby Drydock\x02 to get a ship.',
+    'showDinghy': 'Use a \x01Ired\x01dinghy\x02 to launch your ship.',
+    'showBarbossa': "Sail to \x01Ired\x01Devil's Anvil\x02 to visit Barbossa.",
+    'pistolAim': '\nHold down \x01Ired\x01Right Mouse Button\x02 then move the mouse to aim at the monkey.',
     'pistolTarget': '\nThe aiming circle turns red over an enemy.',
-    'pistolHit': '\nClick the \x1Ired\x1Left Mouse Button\x2 to shoot.',
-    'pistolPractice': '\nPress \x1Ired\x1Escape\x2 to put away your weapon.',
-    'lookoutChestOpen': '\nClick on the \x1Ired\x1Sea Chest Icon\x2 to open it.',
-    'lookoutOpen': '\nClick on the \x1Ired\x1Lookout Icon\x2 to look for other players\nin Pirate vs. Pirate combat.',
-    'lookoutClose': '\nClick on the \x1Ired\x1Sea Chest Icon\x2 to close it.',
-    'showTortugaJack': '\nSail to \x1Ired\x1Tortuga\x2 and find \x1Ired\x1Jack Sparrow\x2.',
-    'teleport_tut1': 'Now ....Press the \x5SmallMap\x5 to bring up the Map of the Islands.',
-    'teleport_tut2': 'Continents that are available for transport to are highighted. As you unlock additional continents for transport, they will become highlighted ont his map. Double click the left mouse button \x5leftClick\x5 \x5leftClick\x5 on the highlighted continent (Tortuga) to be transported to there.',
+    'pistolHit': '\nClick the \x01Ired\x01Left Mouse Button\x02 to shoot.',
+    'pistolPractice': '\nPress \x01Ired\x01Escape\x02 to put away your weapon.',
+    'lookoutChestOpen': '\nClick on the \x01Ired\x01Sea Chest Icon\x02 to open it.',
+    'lookoutOpen': '\nClick on the \x01Ired\x01Lookout Icon\x02 to look for other players\nin Pirate vs. Pirate combat.',
+    'lookoutClose': '\nClick on the \x01Ired\x01Sea Chest Icon\x02 to close it.',
+    'showTortugaJack': '\nSail to \x01Ired\x01Tortuga\x02 and find \x01Ired\x01Jack Sparrow\x02.',
+    'teleport_tut1': 'Now ....Press the \x05SmallMap\x05 to bring up the Map of the Islands.',
+    'teleport_tut2': 'Continents that are available for transport to are highighted. As you unlock additional continents for transport, they will become highlighted ont his map. Double click the left mouse button \x05leftClick\x05 \x05leftClick\x05 on the highlighted continent (Tortuga) to be transported to there.',
     'teleport_tut3': 'You have safely arrived in Tortuga. Tortuga is never more than a double-click away. Click Ok to exit the tutorial.',
-    'chat_tut1': 'Chatting with other pirates can be helpful for teaming up on the enemy. \nClick on the \x1Ired\x1Arrow\x2 or press ENTER to start chatting.',
+    'chat_tut1': 'Chatting with other pirates can be helpful for teaming up on the enemy. \nClick on the \x01Ired\x01Arrow\x02 or press ENTER to start chatting.',
     'chat_tut2': '\nSend a message by typing it at the prompt and pressing ENTER.',
     'chat_tut3': 'You can make friends or start a crew by clicking on another pirate.',
     'chat_tut4': 'This shows a profile card with a picture of the pirate as well as information about him.',
@@ -9185,15 +9183,17 @@ TutorialPanelDialog = {
     'chat_tut7': 'To see a list of your friends, press F or click the mug icon in your Sea Chest.',
     'chat_tut8': 'A list of your crewmates will be shown on the left-hand side of the screen beneath your health bar.',
     'chat_tut_alt1': 'Chatting with other pirates can be helpful for teaming up on the enemy.',
-    'chat_tut_alt2': '\nClick on the \x1Ired\x1Skull Icon\x2 in the lower left corner to bring up the SpeedChat menu.',
+    'chat_tut_alt2': '\nClick on the \x01Ired\x01Skull Icon\x02 in the lower left corner to bring up the SpeedChat menu.',
     'chat_tut_alt3': '\nSend a SpeedChat message by clicking on a menu item.',
     'chat_tut_alt4': 'You can make friends or start a crew by clicking on another pirate.',
     'chat_tut_alt5': 'This shows a profile card with a picture of the pirate as well as information about him.',
     'chat_tut_alt6': 'To make friends or start a crew, click on the Friend Invite or Crew Invite buttons on the profile card.',
     'chat_tut_alt7': 'To see a list of your friends, press F or click the mug icon in your Sea Chest.',
-    'chat_tut_alt8': 'A list of your crewmates will be shown on the left-hand side of the screen beneath your health bar.' }
+    'chat_tut_alt8': 'A list of your crewmates will be shown on the left-hand side of the screen beneath your health bar.'
+}
 TutorialPanelDialogEasyCombo = {
-    'comboSword': '\nTo get a combo bonus, \x1Ired\x1Click\x2 to swing then \x1Ired\x1Click\x2 again at the end of your swing.  Timing is key!' }
+    'comboSword': '\nTo get a combo bonus, \x01Ired\x01Click\x02 to swing then \x01Ired\x01Click\x02 again at the end of your swing.  Timing is key!'
+}
 ContextPanelNoMoreHints = "Don't show %s hints."
 ContextPanelTypes = {
     InventoryType.TutTypeBasic: 'Basic',
@@ -9308,114 +9308,26 @@ ContextPanelTitles = {
     InventoryType.FirstSailingItem: 'Sailing Item',
     InventoryType.CursedBlades: 'Cursed Blades!' }
 ContextPanelMessages = {
-    InventoryType.RepairShip: 'Repair your ship at the \x1Dred\x1Shipwright\x2 near the docks in town. Otherwise, you cannot sail it.',
-    InventoryType.SailCommands: {
-        0: 'Hold down the \x1Dred\x1Right Mouse Button\x2 to look around.',
-        1: 'Use the \x1Dred\x1Mouse Wheel\x2 to move the Camera In or Out.',
-        2: '\x1Dred\x1Press Escape (ESC)\x2 to stop using the Steering Wheel. This lets you use the deck Cannons.',
-        3: "\x1Dred\x1Don't sail alone!\x2 Other players can fire Cannons on your Ship.",
-        4: 'Want to find a large Pirate crew? Join a \x1Dred\x1Public Ship\x2 from the \x1Dred\x1Dinghy\x2.',
-        6: "Want more players onboard? Set your \x1Dred\x1Boarding Permissions\x2 to \x1Dred\x1Public\x2. The button for this is above your ship's health meter.",
-        9: 'Sailing in a straight line allows you to \x1Dred\x1travel long distances faster\x2.' },
-    InventoryType.FireBroadside: '\x1Dred\x1Press 1 or 2\x2 to fire a Broadside! You can also click on the Skill Icons.',
-    InventoryType.AimBroadsides: '\x1Dred\x1Point the side of your ship at the enemy\x2 to aim your Broadsides! Then FIRE!',
-    InventoryType.DockToSellCargo: 'Your Cargo Hold is full. \x1Dred\x1Dock at port\x2 to sell the plunder!',
-    InventoryType.LostCargo: 'If your ship sinks, you lose all your Cargo from the voyage!',
-    InventoryType.LowShipHealth: 'Your ship is damaged! You can \x1Dred\x1repair\x2 it at the \x1Dred\x1Shipwright\x2 in town.',
-    InventoryType.BuyNewShip: 'You have earned enough gold to purchase a \x1Dred\x1%s\x2! You can purchase New Ships from the \x1Dred\x1Shipwright\x2 in town.',
-    InventoryType.AimForHull: '\x1Dred\x1Aim for the Hull\x2 of a ship to sink it.',
-    InventoryType.ExitCannon: '\x1Dred\x1Press Escape (ESC)\x2 to stop using the Cannon.',
-    InventoryType.LowHealth: '\x1Dred\x1Press T\x2 to drink a Tonic! Tonics restore lost Health.',
-    InventoryType.OutOfTonics: 'You have used up all your healing tonics! Purchase more from the \x1Dred\x1Gypsy Wagons\x2 in town.',
-    InventoryType.SwitchWeapons: '\x1Dred\x1Press F1 or F2\x2 to switch between the Sword and the Pistol.',
-    InventoryType.AimPistol: '\x1Dred\x1Hold down\x2 the \x1Dred\x1Right Mouse Button\x2 to aim your pistol.',
-    InventoryType.NewSkillPoint: 'You got 1 new %s Skill Point! \x1Dred\x1Press K\x2 to see your Skill Page and \x1Dred\x1unlock\x2 new skills or \x1Dred\x1upgrade\x2 current skills.',
-    InventoryType.UpgradeSkills: "You've upgraded a Skill! Upgrading a skill makes it more powerful, and its effect will last longer.",
-    InventoryType.CutlassCombos: '\x1Dred\x1Time your Sword Attacks\x2 to form a Combo. Combos deal more damage over time than button-mashing.',
-    InventoryType.NewComboMove: 'You unlocked a \x1Dred\x1new Combo Move\x2! You can now form longer Combo Chains for greater damage',
-    InventoryType.NewTakeAimSkill: 'You unlocked the Take Aim Skill! \x1Dred\x1Hold down\x2 the \x1Dred\x1Left Mouse Button\x2 to Aim with your pistol.',
-    InventoryType.AttuneVoodooDoll: 'Touch an enemy with the Voodoo Doll using your \x1Dred\x1Left Mouse Button\x2. Then you can cast Hexes on him from a distance!',
-    InventoryType.FollowLight: 'Follow the Ray-of-Light. It leads you to your \x1Dred\x1Quest target\x2!',
-    InventoryType.QuestJournal: 'You have a New Quest! \x1Dred\x1Press J\x2 to open your \x1Dred\x1Quest Journal\x2 and read it.',
-    InventoryType.ChangeQuestTracking: 'You can change which Quest is being tracked by the Ray-of-Light in your \x1Dred\x1Quest Journal (J)\x2.',
-    InventoryType.NewWeaponQuest: 'You received a New Weapon Quest! If you complete this Quest, you will unlock the \x1Dred\x1Voodoo Doll weapon\x2!',
-    InventoryType.MoreWeaponQuests: 'As your Notoriety Level increases, you will unlock more Weapon Quests.',
-    InventoryType.IslandTeleport: 'Use the \x1Dred\x1Map page (M)\x2 to Teleport from one island to another.',
-    InventoryType.PlayerChat: '\x1Dred\x1Press ENTER\x2 to begin typing to nearby players.',
-    InventoryType.PlayerProfiles: '\x1Dred\x1Click on other players\x2 to see their Player Profile. You must \x1Dred\x1put away your weapon first\x2 though.',
-    InventoryType.PlayerInvites: 'You can invite another player to join your \x1Dred\x1Crew\x2 or \x1Dred\x1Guild\x2 from their \x1Dred\x1Player Profile\x2.',
-    InventoryType.NewCrew: 'You have joined a Crew! Crews have their own private chat channel and you can teleport to any of your crewmates!',
-    InventoryType.CrewBonus: 'When you fight near your Crewmates, you gain \x1Dred\x1bonus Reputation\x2 and level up faster!',
-    InventoryType.NewFriend: "You made a new Friend! You can use your \x1Dred\x1Friend's List (F)\x2 to contact or teleport to your friend.",
-    InventoryType.NewGuild: "You have joined a Guild! Guilds help you stay in contact with friends and meet other Pirates! View your Guild's status using the \x1Dred\x1Friend's List (F)\x2.",
-    InventoryType.BrokenHull: 'You have lost all your Hull Points on your %s side. Further damage would be dangerous! You can \x1Dred\x1repair\x2 this at the \x1Dred\x1Shipwright\x2 in town.',
-    InventoryType.BrokenMast: 'You have lost a Mast and move slower now. You can \x1Dred\x1repair\x2 this at the \x1Dred\x1Shipwright\x2 in town.',
-    InventoryType.RearHullDamage: 'Attacking enemy ships in the \x1Dred\x1Rear Hull\x2 deals extra damage!',
-    InventoryType.AttuneFriend: 'You can attune a friendly Pirate and \x1Dred\x1cast Healing Voodoo\x2 on him.',
-    InventoryType.RestAndHeal: '\x1Dred\x1Wait in a safe place\x2 to heal after a battle. Over time, your Health will be restored.',
-    InventoryType.GoToJail: 'When you are defeated, you are put in Jail by the Navy. Find a way to escape.',
-    InventoryType.Disengage: 'Enemies disengage when they chase you too far from the area they are guarding.',
-    InventoryType.EarnMoreSkillPoints: '\x1Dred\x1Level up your Weapons\x2 to earn more Skill Points for that weapon.',
-    InventoryType.NotorietyLevelUp: 'You gained a new Notoriety Level! Notoriety Levels make you stronger and give you more Health and Voodoo Points.',
-    InventoryType.WeaponTraining: 'You will \x1Dred\x1unlock new weapons\x2 like the Voodoo Doll, Dagger, Grenades, and Voodoo Staff when you reach \x1Dred\x1higher Notoriety Levels\x2.',
-    InventoryType.MerchantStores: 'You can purchase new Weapons, Clothing, Tattoos, Jewelry, and Haircuts in town.',
-    InventoryType.NewAmmoSkill: 'You unlocked a new Ammo Skill! Switching to this skill allows you to fire new ammo, but you must \x1Dred\x1purchase Ammo\x2 from the \x1Dred\x1Gunsmith\x2 in town.',
-    InventoryType.OutOfAmmo: 'You ran out of ammo. \x1Dred\x1Purchase more\x2 from the \x1Dred\x1Gunsmith\x2 in town.',
-    InventoryType.HardEnemies: 'Enemies with a \x1Dred\x1red Level tag\x2 are at a much \x1Dred\x1higher level\x2 than you! Be careful!',
-    InventoryType.IslandMap: '\x1Dred\x1Press F8\x2 to show the Map for the island.',
-    InventoryType.DockCommands: {
-        3: 'Press the \x1Dred\x1Space Bar\x2 to Jump.',
-        5: '\x1Dred\x1Press R\x2 to toggle Auto-Run.',
-        7: 'You can play \x1Dred\x1Poker\x2 and \x1Dred\x1Blackjack\x2 at the \x1Dred\x1Taverns\x2 in town! Be careful not to lose all your gold though.',
-        9: 'Want to battle other player ships at sea? Try Privateering in the \x1Dred\x1Lookout Panel (L)\x2.',
-        19: 'Want to fight other players on land? Try Pirate vs. Pirate in the \x1Dred\x1Lookout Panel (L)\x2.' },
-    InventoryType.DockCrewCommands: {
-        1: 'To leave a Crew, click on the Crew Button in the \x1Dred\x1Player Profile\x2.' },
-    InventoryType.TeleportToFriends: 'You can teleport to a Crewmate, Friend, or Guild Member by using the \x1Dred\x1Go To Button\x2 on their \x1Dred\x1Player Profiles\x2.',
-    InventoryType.Flagships: 'Ships with a flag icon overhead are Flagships. They \x1Dred\x1must be boarded\x2 to be sunk!',
-    InventoryType.BackStrike: 'Attacking enemies in the back with a Dagger deals extra damage!',
-    InventoryType.Interrupt: "You can use the \x1Dred\x1new Asp Skill\x2 to interrupt a target's Voodoo Doll Attunement.",
-    InventoryType.BossEnemy: 'This is a Boss Enemy! Boss Enemies are tough to defeat. You should find other Pirates to help you in this battle.',
-    InventoryType.TreasureCollection: 'You unlocked a Treasure Collection Set! Complete the collection for a Reputation reward. \x1Dred\x1Press U\x2 to see your collections.',
-    InventoryType.SearchableContainers: 'These searchable items are used for Quests later on.',
-    InventoryType.UseEmotes: 'Ever wanted to express yourself to other players? Try typing \x1Dred\x1/wave\x2 or \x1Dred\x1/dance\x2 in chat!',
-    InventoryType.SpanishPrivateers: 'Welcome to the Spanish Privateering Island! Deploy a ship or board an existing ship to hunt the French foe!',
-    InventoryType.FrenchPrivateers: 'Welcome to the French Privateering Island! Deploy a ship or board an existing ship to hunt the Spanish foe!',
-    InventoryType.Groggy: 'You are Groggy! While groggy, your \x1Dred\x1Maximum Health is reduced\x2 for a short time.',
-    InventoryType.ChatPreferences: '%s',
-    InventoryType.SailShip: 'Grab the \x1Dred\x1Steering Wheel\x2 to sail the ship around.',
-    InventoryType.FishingEnterGame: 'Click to start the power bar, click again to cast!',
-    InventoryType.FishingAfterCast: 'Click and hold to reel in, Space Bar quick reels!',
-    InventoryType.FishingAboutToBite: 'Click as a fish bites to hook it!',
-    InventoryType.FishingFishOnLine: 'Stop reeling when the fish fights or your line will lose health!',
-    InventoryType.FishingLineHealth: 'If your line health reaches zero, you will lose your lure and the fish will get away!',
-    InventoryType.FishingLineBroken: 'Your line broke! Choose a new lure from your tackle box.',
-    InventoryType.FishingNoMoreLures: 'You can purchase more from the Fishing Master.',
-    InventoryType.FishingCaughtFish: 'Congratulations! This fish has been added to your collection.',
-    InventoryType.FishingLevelGain: 'Level up to gain new abilities and increase reel-in speed!',
-    InventoryType.FishingOceanEye: 'Ocean Eye will give you a view of the entire ocean.',
-    InventoryType.FishingSink: 'Sink will cause your lure to fall faster.',
-    InventoryType.FishingStall: 'Stall will pause your lure in the water.',
-    InventoryType.FishingPull: 'Pull will increase the speed of reeling in a fish.',
-    InventoryType.FishingHealLine: 'Heal Line will restore health to your line.',
-    InventoryType.FishingLegendAppear: 'You have encountered a Legendary Fish!',
-    InventoryType.FishingLegendStruggle: 'Click rapidly to win a struggle with the Legendary Fish!',
-    InventoryType.FishingLegendReel: 'Move the mouse in a circle to reel in the fish!',
-    InventoryType.FishingLegendCaught: 'Click on the handle to stop the Legendary Fish from fleeing!',
-    InventoryType.FishingLevel10: 'You can now use the Fishing Boat from the Fishing Master!',
-    InventoryType.FishingCaughtAllFish: 'There are no more fish in this area.',
-    InventoryType.FishingLineBroken2: 'Some fish are stronger than others and are worth more XP and Gold.',
-    InventoryType.FirstLootContainer: 'Loot Containers sometimes drop from enemies as you defeat them. They contain all kinds of treasures and items!',
-    InventoryType.GunTrainingRequired: "Before you can use this weapon, you must \x1Dred\x1visit Barbossa\x2 on Devil's Anvil to learn how to use Guns!",
-    InventoryType.DollTrainingRequired: 'The Voodoo Doll Training Quest \x1Dred\x1unlocks at Notoriety Level 5.\x2 You must complete it before you can use Voodoo Doll weapons.',
-    InventoryType.DaggerTrainingRequired: 'The Dagger Training Quest \x1Dred\x1unlocks at Notoriety Level 10.\x2 You must complete it before you can use Dagger weapons.',
-    InventoryType.StaffTrainingRequired: 'The Voodoo Staff Training Quest \x1Dred\x1unlocks at Notoriety Level 30.\x2 You must complete it before you can use Voodoo Staff weapons.',
-    InventoryType.EquippingWeapons: 'Open your Inventory (I) to equip weapons! Click on the Weapon Tab and \x1Dred\x1drag the Weapon to the equip slots\x2 marked F1, F2, F3, & F4.',
-    InventoryType.InventoryFull: 'One of your Inventory bags is full! Open your Inventory (I) and drag items to the \x1Dred\x1Trash Bin\x2 to remove them. You can also \x1Dred\x1sell items\x2 to Shopkeepers in town for Gold.',
-    InventoryType.FirstSailingItem: 'You just received a \x1Dred\x1Sailing Item!\x2 These are equipped into the Item Slot and give you bonuses while \x1Dred\x1Sailing\x2 or on a \x1Dred\x1Cannon\x2!',
-    InventoryType.CursedBlades: "You can now find Cursed Blades by defeating enemies on Raven's Cove and Isla Tormenta!" }
-SpeedChatPlusPreferences = 'This Pirate is using \x1Dred\x1SpeedChat Plus\x2 and did not receive your full message. When you are typing, words marked in red will not be sent to this player.'
-SpeedChatPreferences = 'This Pirate is using \x1Dred\x1SpeedChat\x2 and did not receive your message. Please use \x1Dred\x1SpeedChat\x2 to talk with this player.'
+    InventoryType.RepairShip: 'Repair your ship at the \x01Dred\x01Shipwright\x02 near the docks in town. Otherwise, you cannot sail it.', InventoryType.SailCommands: {
+        0: 'Hold down the \x01Dred\x01Right Mouse Button\x02 to look around.',
+        1: 'Use the \x01Dred\x01Mouse Wheel\x02 to move the Camera In or Out.',
+        2: '\x01Dred\x01Press Escape (ESC)\x02 to stop using the Steering Wheel. This lets you use the deck Cannons.',
+        3: "\x01Dred\x01Don't sail alone!\x02 Other players can fire Cannons on your Ship.",
+        4: 'Want to find a large Pirate crew? Join a \x01Dred\x01Public Ship\x02 from the \x01Dred\x01Dinghy\x02.',
+        6: "Want more players onboard? Set your \x01Dred\x01Boarding Permissions\x02 to \x01Dred\x01Public\x02. The button for this is above your ship's health meter.",
+        9: 'Sailing in a straight line allows you to \x01Dred\x01travel long distances faster\x02.'
+    }, InventoryType.FireBroadside: '\x01Dred\x01Press 1 or 2\x02 to fire a Broadside! You can also click on the Skill Icons.', InventoryType.AimBroadsides: '\x01Dred\x01Point the side of your ship at the enemy\x02 to aim your Broadsides! Then FIRE!', InventoryType.DockToSellCargo: 'Your Cargo Hold is full. \x01Dred\x01Dock at port\x02 to sell the plunder!', InventoryType.LostCargo: 'If your ship sinks, you lose all your Cargo from the voyage!', InventoryType.LowShipHealth: 'Your ship is damaged! You can \x01Dred\x01repair\x02 it at the \x01Dred\x01Shipwright\x02 in town.', InventoryType.BuyNewShip: 'You have earned enough gold to purchase a \x01Dred\x01%s\x02! You can purchase New Ships from the \x01Dred\x01Shipwright\x02 in town.', InventoryType.AimForHull: '\x01Dred\x01Aim for the Hull\x02 of a ship to sink it.', InventoryType.ExitCannon: '\x01Dred\x01Press Escape (ESC)\x02 to stop using the Cannon.', InventoryType.LowHealth: '\x01Dred\x01Press T\x02 to drink a Tonic! Tonics restore lost Health.', InventoryType.OutOfTonics: 'You have used up all your healing tonics! Purchase more from the \x01Dred\x01Gypsy Wagons\x02 in town.', InventoryType.SwitchWeapons: '\x01Dred\x01Press F1 or F2\x02 to switch between the Sword and the Pistol.', InventoryType.AimPistol: '\x01Dred\x01Hold down\x02 the \x01Dred\x01Right Mouse Button\x02 to aim your pistol.', InventoryType.NewSkillPoint: 'You got 1 new %s Skill Point! \x01Dred\x01Press K\x02 to see your Skill Page and \x01Dred\x01unlock\x02 new skills or \x01Dred\x01upgrade\x02 current skills.', InventoryType.UpgradeSkills: "You've upgraded a Skill! Upgrading a skill makes it more powerful, and its effect will last longer.", InventoryType.CutlassCombos: '\x01Dred\x01Time your Sword Attacks\x02 to form a Combo. Combos deal more damage over time than button-mashing.', InventoryType.NewComboMove: 'You unlocked a \x01Dred\x01new Combo Move\x02! You can now form longer Combo Chains for greater damage', InventoryType.NewTakeAimSkill: 'You unlocked the Take Aim Skill! \x01Dred\x01Hold down\x02 the \x01Dred\x01Left Mouse Button\x02 to Aim with your pistol.', InventoryType.AttuneVoodooDoll: 'Touch an enemy with the Voodoo Doll using your \x01Dred\x01Left Mouse Button\x02. Then you can cast Hexes on him from a distance!', InventoryType.FollowLight: 'Follow the Ray-of-Light. It leads you to your \x01Dred\x01Quest target\x02!', InventoryType.QuestJournal: 'You have a New Quest! \x01Dred\x01Press J\x02 to open your \x01Dred\x01Quest Journal\x02 and read it.', InventoryType.ChangeQuestTracking: 'You can change which Quest is being tracked by the Ray-of-Light in your \x01Dred\x01Quest Journal (J)\x02.', InventoryType.NewWeaponQuest: 'You received a New Weapon Quest! If you complete this Quest, you will unlock the \x01Dred\x01Voodoo Doll weapon\x02!', InventoryType.MoreWeaponQuests: 'As your Notoriety Level increases, you will unlock more Weapon Quests.', InventoryType.IslandTeleport: 'Use the \x01Dred\x01Map page (M)\x02 to Teleport from one island to another.', InventoryType.PlayerChat: '\x01Dred\x01Press ENTER\x02 to begin typing to nearby players.', InventoryType.PlayerProfiles: '\x01Dred\x01Click on other players\x02 to see their Player Profile. You must \x01Dred\x01put away your weapon first\x02 though.', InventoryType.PlayerInvites: 'You can invite another player to join your \x01Dred\x01Crew\x02 or \x01Dred\x01Guild\x02 from their \x01Dred\x01Player Profile\x02.', InventoryType.NewCrew: 'You have joined a Crew! Crews have their own private chat channel and you can teleport to any of your crewmates!', InventoryType.CrewBonus: 'When you fight near your Crewmates, you gain \x01Dred\x01bonus Reputation\x02 and level up faster!', InventoryType.NewFriend: "You made a new Friend! You can use your \x01Dred\x01Friend's List (F)\x02 to contact or teleport to your friend.", InventoryType.NewGuild: "You have joined a Guild! Guilds help you stay in contact with friends and meet other Pirates! View your Guild's status using the \x01Dred\x01Friend's List (F)\x02.", InventoryType.BrokenHull: 'You have lost all your Hull Points on your %s side. Further damage would be dangerous! You can \x01Dred\x01repair\x02 this at the \x01Dred\x01Shipwright\x02 in town.', InventoryType.BrokenMast: 'You have lost a Mast and move slower now. You can \x01Dred\x01repair\x02 this at the \x01Dred\x01Shipwright\x02 in town.', InventoryType.RearHullDamage: 'Attacking enemy ships in the \x01Dred\x01Rear Hull\x02 deals extra damage!', InventoryType.AttuneFriend: 'You can attune a friendly Pirate and \x01Dred\x01cast Healing Voodoo\x02 on him.', InventoryType.RestAndHeal: '\x01Dred\x01Wait in a safe place\x02 to heal after a battle. Over time, your Health will be restored.', InventoryType.GoToJail: 'When you are defeated, you are put in Jail by the Navy. Find a way to escape.', InventoryType.Disengage: 'Enemies disengage when they chase you too far from the area they are guarding.', InventoryType.EarnMoreSkillPoints: '\x01Dred\x01Level up your Weapons\x02 to earn more Skill Points for that weapon.', InventoryType.NotorietyLevelUp: 'You gained a new Notoriety Level! Notoriety Levels make you stronger and give you more Health and Voodoo Points.', InventoryType.WeaponTraining: 'You will \x01Dred\x01unlock new weapons\x02 like the Voodoo Doll, Dagger, Grenades, and Voodoo Staff when you reach \x01Dred\x01higher Notoriety Levels\x02.', InventoryType.MerchantStores: 'You can purchase new Weapons, Clothing, Tattoos, Jewelry, and Haircuts in town.', InventoryType.NewAmmoSkill: 'You unlocked a new Ammo Skill! Switching to this skill allows you to fire new ammo, but you must \x01Dred\x01purchase Ammo\x02 from the \x01Dred\x01Gunsmith\x02 in town.', InventoryType.OutOfAmmo: 'You ran out of ammo. \x01Dred\x01Purchase more\x02 from the \x01Dred\x01Gunsmith\x02 in town.', InventoryType.HardEnemies: 'Enemies with a \x01Dred\x01red Level tag\x02 are at a much \x01Dred\x01higher level\x02 than you! Be careful!', InventoryType.IslandMap: '\x01Dred\x01Press F8\x02 to show the Map for the island.', InventoryType.DockCommands: {
+        3: 'Press the \x01Dred\x01Space Bar\x02 to Jump.',
+        5: '\x01Dred\x01Press R\x02 to toggle Auto-Run.',
+        7: 'You can play \x01Dred\x01Poker\x02 and \x01Dred\x01Blackjack\x02 at the \x01Dred\x01Taverns\x02 in town! Be careful not to lose all your gold though.',
+        9: 'Want to battle other player ships at sea? Try Privateering in the \x01Dred\x01Lookout Panel (L)\x02.',
+        19: 'Want to fight other players on land? Try Pirate vs. Pirate in the \x01Dred\x01Lookout Panel (L)\x02.'
+    }, InventoryType.DockCrewCommands: {
+        1: 'To leave a Crew, click on the Crew Button in the \x01Dred\x01Player Profile\x02.'
+    }, InventoryType.TeleportToFriends: 'You can teleport to a Crewmate, Friend, or Guild Member by using the \x01Dred\x01Go To Button\x02 on their \x01Dred\x01Player Profiles\x02.', InventoryType.Flagships: 'Ships with a flag icon overhead are Flagships. They \x01Dred\x01must be boarded\x02 to be sunk!', InventoryType.BackStrike: 'Attacking enemies in the back with a Dagger deals extra damage!', InventoryType.Interrupt: "You can use the \x01Dred\x01new Asp Skill\x02 to interrupt a target's Voodoo Doll Attunement.", InventoryType.BossEnemy: 'This is a Boss Enemy! Boss Enemies are tough to defeat. You should find other Pirates to help you in this battle.', InventoryType.TreasureCollection: 'You unlocked a Treasure Collection Set! Complete the collection for a Reputation reward. \x01Dred\x01Press U\x02 to see your collections.', InventoryType.SearchableContainers: 'These searchable items are used for Quests later on.', InventoryType.UseEmotes: 'Ever wanted to express yourself to other players? Try typing \x01Dred\x01/wave\x02 or \x01Dred\x01/dance\x02 in chat!', InventoryType.SpanishPrivateers: 'Welcome to the Spanish Privateering Island! Deploy a ship or board an existing ship to hunt the French foe!', InventoryType.FrenchPrivateers: 'Welcome to the French Privateering Island! Deploy a ship or board an existing ship to hunt the Spanish foe!', InventoryType.Groggy: 'You are Groggy! While groggy, your \x01Dred\x01Maximum Health is reduced\x02 for a short time.', InventoryType.ChatPreferences: '%s', InventoryType.SailShip: 'Grab the \x01Dred\x01Steering Wheel\x02 to sail the ship around.', InventoryType.FishingEnterGame: 'Click to start the power bar, click again to cast!', InventoryType.FishingAfterCast: 'Click and hold to reel in, Space Bar quick reels!', InventoryType.FishingAboutToBite: 'Click as a fish bites to hook it!', InventoryType.FishingFishOnLine: 'Stop reeling when the fish fights or your line will lose health!', InventoryType.FishingLineHealth: 'If your line health reaches zero, you will lose your lure and the fish will get away!', InventoryType.FishingLineBroken: 'Your line broke! Choose a new lure from your tackle box.', InventoryType.FishingNoMoreLures: 'You can purchase more from the Fishing Master.', InventoryType.FishingCaughtFish: 'Congratulations! This fish has been added to your collection.', InventoryType.FishingLevelGain: 'Level up to gain new abilities and increase reel-in speed!', InventoryType.FishingOceanEye: 'Ocean Eye will give you a view of the entire ocean.', InventoryType.FishingSink: 'Sink will cause your lure to fall faster.', InventoryType.FishingStall: 'Stall will pause your lure in the water.', InventoryType.FishingPull: 'Pull will increase the speed of reeling in a fish.', InventoryType.FishingHealLine: 'Heal Line will restore health to your line.', InventoryType.FishingLegendAppear: 'You have encountered a Legendary Fish!', InventoryType.FishingLegendStruggle: 'Click rapidly to win a struggle with the Legendary Fish!', InventoryType.FishingLegendReel: 'Move the mouse in a circle to reel in the fish!', InventoryType.FishingLegendCaught: 'Click on the handle to stop the Legendary Fish from fleeing!', InventoryType.FishingLevel10: 'You can now use the Fishing Boat from the Fishing Master!', InventoryType.FishingCaughtAllFish: 'There are no more fish in this area.', InventoryType.FishingLineBroken2: 'Some fish are stronger than others and are worth more XP and Gold.', InventoryType.FirstLootContainer: 'Loot Containers sometimes drop from enemies as you defeat them. They contain all kinds of treasures and items!', InventoryType.GunTrainingRequired: "Before you can use this weapon, you must \x01Dred\x01visit Barbossa\x02 on Devil's Anvil to learn how to use Guns!", InventoryType.DollTrainingRequired: 'The Voodoo Doll Training Quest \x01Dred\x01unlocks at Notoriety Level 5.\x02 You must complete it before you can use Voodoo Doll weapons.', InventoryType.DaggerTrainingRequired: 'The Dagger Training Quest \x01Dred\x01unlocks at Notoriety Level 10.\x02 You must complete it before you can use Dagger weapons.', InventoryType.StaffTrainingRequired: 'The Voodoo Staff Training Quest \x01Dred\x01unlocks at Notoriety Level 30.\x02 You must complete it before you can use Voodoo Staff weapons.', InventoryType.EquippingWeapons: 'Open your Inventory (I) to equip weapons! Click on the Weapon Tab and \x01Dred\x01drag the Weapon to the equip slots\x02 marked F1, F2, F3, & F4.', InventoryType.InventoryFull: 'One of your Inventory bags is full! Open your Inventory (I) and drag items to the \x01Dred\x01Trash Bin\x02 to remove them. You can also \x01Dred\x01sell items\x02 to Shopkeepers in town for Gold.', InventoryType.FirstSailingItem: 'You just received a \x01Dred\x01Sailing Item!\x02 These are equipped into the Item Slot and give you bonuses while \x01Dred\x01Sailing\x02 or on a \x01Dred\x01Cannon\x02!', InventoryType.CursedBlades: "You can now find Cursed Blades by defeating enemies on Raven's Cove and Isla Tormenta!"
+}
+SpeedChatPlusPreferences = 'This Pirate is using \x01Dred\x01SpeedChat Plus\x02 and did not receive your full message. When you are typing, words marked in red will not be sent to this player.'
+SpeedChatPreferences = 'This Pirate is using \x01Dred\x01SpeedChat\x02 and did not receive your message. Please use \x01Dred\x01SpeedChat\x02 to talk with this player.'
 ContextTutSearchableContainers = 'Searchable Containers'
 ContextTutBuriedTreasure = 'Buried Treasure'
 Left = 'Left'
@@ -9519,7 +9431,7 @@ CollectionRarities = {
     1: 'Uncommon',
     2: 'Rare' }
 CollectionPopupDuplicateText = '%s\nRarity: %s\nValue: %s'
-CollectionPopupNewText = '%s \x1CPGreen\x1NEW!\x2\nRarity: %s\nValue: %s Gold'
+CollectionPopupNewText = '%s \x01CPGreen\x01NEW!\x02\nRarity: %s\nValue: %s Gold'
 Collections = {
     InventoryType.Collection_Set1: 'Valuables',
     InventoryType.Collection_Set1_Part1: 'Sapphire',
@@ -9685,10 +9597,10 @@ ChatPanelQuestCompletedMsg = 'Quest Completed'
 ChatPanelQuestUpdatedMsg = 'Quest Updated'
 ChatPanelQuestAddedMsg = 'New Quest Added'
 Loading = 'Loading...'
-GuildRankMember = '\x1slant\x1Member\x2'
-GuildRankLeader = '\x1slant\x1Guildmaster\x2'
-GuildRankSubLead = '\x1slant\x1Officer\x2'
-GuildRankInviter = '\x1slant\x1Veteran\x2'
+GuildRankMember = '\x01slant\x01Member\x02'
+GuildRankLeader = '\x01slant\x01Guildmaster\x02'
+GuildRankSubLead = '\x01slant\x01Officer\x02'
+GuildRankInviter = '\x01slant\x01Veteran\x02'
 GuildRankNames = {
     1: 'Member',
     2: 'Officer',
@@ -9844,8 +9756,8 @@ PokerSitDown7StudPoker = '7 Stud Poker'
 PokerYouLost = 'You Lost'
 VR_Head_StayTuned1 = 'Stay tuned for the next Pirates of the Caribbean Online Expansion!'
 VR_Head_StayTuned2 = 'Stay tuned for the next Pirates of the Caribbean Online Expansion!'
-VR_UpgradeNow = '\x1smallCaps\x1Upgrade Now!\x2'
-VR_UpgradeLater = '\x1smallCaps\x1Continue Playing\x2'
+VR_UpgradeNow = '\x01smallCaps\x01Upgrade Now!\x02'
+VR_UpgradeLater = '\x01smallCaps\x01Continue Playing\x02'
 VR_DismissNow = 'Upgrade Later'
 VR_Head_Combat = 'Upgrade your account to continue this quest!'
 VR_Head_Quest = 'Upgrade your account to take part in this quest!'
@@ -9861,7 +9773,7 @@ VR_Head_Treasure = 'Upgrade your account to complete this treasure collection!'
 VR_Head_Customize = 'Upgrade your account to customize your Pirate with exclusive items!'
 VR_StayTuned1 = '-  Coming soon: More fabulous places to explore\n-  More pirate adventures with Jack and friends\n-  Fiendish foes to test your mettle'
 VR_StayTuned2 = '-  Coming soon: More fabulous places to explore\n-  More pirate adventures with Jack and friends\n-  Fiendish foes to test your mettle'
-VR_Access = '\x1uline\x1Experience Unlimited Access - Click here for details\x2'
+VR_Access = '\x01uline\x01Experience Unlimited Access - Click here for details\x02'
 VRCustomizeBlurb = 'Customize your Pirates with exclusive clothing, jewelry, and tattoos'
 VR_Combat = "You'll also gain access to these exclusive game features:\n   -  Unlock advanced weapons and skills\n   -  " + VRCustomizeBlurb + '\n   -  Captain bigger and better ships...and more!'
 VR_Quest = "You'll also gain access to these exclusive game features:\n   -  " + VRCustomizeBlurb + '\n   -  Unlock advanced weapons and skills\n   -  Captain bigger and better ships... and more!'
@@ -9904,7 +9816,7 @@ VR_Cap_Customize2 = 'Stand out from the crowd'
 VR_FeaturePopTitle = 'Sorry Mate...'
 VR_FeaturePopLongText = 'This feature requires Unlimited Access Membership.\nJoin the crew of advanced players to experience\nall the Caribbean has to offer.'
 VR_FeaturePopLongTextAvatars = 'Creating more Pirates requires Unlimited Access Membership.\nJoin the crew of advanced players to experience\nall the Caribbean has to offer.'
-VR_AuthAccess = '\x1smallCaps\x1Unlimited Access Members Only\x2'
+VR_AuthAccess = '\x01smallCaps\x01Unlimited Access Members Only\x02'
 VR_StayTuned = 'Stay Tuned for More Adventures'
 VR_MemberOnly = 'This feature is for Unlimited Access Members only!'
 VR_LongText = "Unlock the full Pirate adventure waiting for you now!  See what additional help Jack and his friends need!  Can you survive Davy Jones' wrath?  Learn new skills and new weapons!  Gain full mastery of the skills you currently possess.  Open new PVP and Parlor gaming modes!"
@@ -9923,9 +9835,9 @@ BlackjackDealerWins = 'Dealer Wins'
 ComboOrderWarn = 'Combo skills must be unlocked in order.'
 TutorialSweepWarn = 'You must unlock Sweep on Cutlass upgrade.'
 noFreebooterCap = 'Unlimited Access Only'
-FreebooterSkillLock = '\x1Ired\x1Basic Members may spend only 6 skill points per category.\x2'
-FreebooterSkillMax = '\x1Ired\x1Basic Members may raise skills to no more than rank 2.\x2'
-FreebooterDisallow = '\x1Ired\x1Locked for Basic Members\x2'
+FreebooterSkillLock = '\x01Ired\x01Basic Members may spend only 6 skill points per category.\x02'
+FreebooterSkillMax = '\x01Ired\x01Basic Members may raise skills to no more than rank 2.\x02'
+FreebooterDisallow = '\x01Ired\x01Locked for Basic Members\x02'
 Freebooter = 'Basic Member'
 GuildPrefix = '(G):'
 CrewPrefix = '(C):'
@@ -10565,8 +10477,8 @@ BlackPearlWinner = 'You successfully rescued the Black Pearl! \nTake it back to 
 BlackPearlWaitCutscene = 'Waiting for other players to finish cutscene.'
 BlackPearlWaitCutscene2 = 'Other players waiting for you to finish cutscene.'
 BlackPearlScoreboard = 'Black Pearl Quest:'
-BlackPearlRewardSuccess = 'Congratulations!  You have earned a potion reward for liberating the Black Pearl!:\n\n\x1yellow\x1%s\x2\n\nComplete the Black Pearl treasure map again for the chance to earn rare items not available elsewhere!'
-BlackPearlRewardFailure = 'You are unable to carry your potion reward!:\n\n\x1yellow\x1%s\x2\n\nMake sure you have room for new potions and liberate the Black Pearl again for the chance to earn rare potions!'
+BlackPearlRewardSuccess = 'Congratulations!  You have earned a potion reward for liberating the Black Pearl!:\n\n\x01yellow\x01%s\x02\n\nComplete the Black Pearl treasure map again for the chance to earn rare items not available elsewhere!'
+BlackPearlRewardFailure = 'You are unable to carry your potion reward!:\n\n\x01yellow\x01%s\x02\n\nMake sure you have room for new potions and liberate the Black Pearl again for the chance to earn rare potions!'
 NavyFortName = 'Navy Fort'
 EdgeOfWorldWarning = "You've sailed to the edge of the world. Turn your ship around to continue your adventure."
 ShopBlacksmith = 'Blacksmith'
@@ -10634,7 +10546,7 @@ EnterKingsheadWarning = 'Sorry, you must be an Unlimited Access member to enter 
 AccessVelvetRope = 'Basic Member Access'
 AccessFull = 'Unlimited Access'
 AccessUnknown = 'Unknown Access'
-VelvetRopeQuestBlock = '\x1Ired\x1This quest is available only to Unlimited Access.\x2'
+VelvetRopeQuestBlock = '\x01Ired\x01This quest is available only to Unlimited Access.\x02'
 AccessLevel = {
     OTPGlobals.AccessUnknown: AccessUnknown,
     OTPGlobals.AccessVelvetRope: AccessVelvetRope,
@@ -10712,27 +10624,20 @@ ReportPlayerFoulLanguage = 'Foul Language'
 ReportPlayerPersonalInfo = 'Sharing/Requesting Personal Info'
 ReportPlayerRudeBehavior = 'Rude or Mean Behavior'
 ReportPlayerBadName = 'Bad Name'
-ReportPlayerAlreadyReported = '\x1Ired\x1%s\x2 has already been reported this session. Your report has already been sent to a Moderator for review.'
-ReportPlayerTopMenu = 'This feature will send a complete report to a moderator.  Instead of sending a report, you might choose to do one of the following:\n\n  - Ignore this player for this session\n  - Switch to another server\n  - Remove friendship\n\n\n\nDo you want to report \x1Ired\x1%s\x2 to a Moderator?'
-ReportPlayerChooseCategory = 'You are about to report \x1Ired\x1%s\x2. A Moderator will be alerted to your complaint and will take appropriate action for anyone breaking our rules. Please choose a reason for this report.'
-ReportPlayerConfirmFoulLanguage = 'You are about to report that \x1Ired\x1%s\x2 has used obscene, bigoted or sexually explicit language.'
-ReportPlayerConfirmPersonalInfo = 'You are about to report that \x1Ired\x1%s\x2 is being unsafe by giving out or requesting a phone number, address, last name, email address, password or account name.'
-ReportPlayerConfirmRudeBehavior = 'You are about to report that \x1Ired\x1%s\x2 is bullying, harassing, or using extreme behavior to disrupt the game.'
-ReportPlayerConfirmBadName = "You are about to report that \x1Ired\x1%s\x2 has created a name that does not follow Disney's House Rules."
+ReportPlayerAlreadyReported = '\x01Ired\x01%s\x02 has already been reported this session. Your report has already been sent to a Moderator for review.'
+ReportPlayerTopMenu = 'This feature will send a complete report to a moderator.  Instead of sending a report, you might choose to do one of the following:\n\n  - Ignore this player for this session\n  - Switch to another server\n  - Remove friendship\n\n\n\nDo you want to report \x01Ired\x01%s\x02 to a Moderator?'
+ReportPlayerChooseCategory = 'You are about to report \x01Ired\x01%s\x02. A Moderator will be alerted to your complaint and will take appropriate action for anyone breaking our rules. Please choose a reason for this report.'
+ReportPlayerConfirmFoulLanguage = 'You are about to report that \x01Ired\x01%s\x02 has used obscene, bigoted or sexually explicit language.'
+ReportPlayerConfirmPersonalInfo = 'You are about to report that \x01Ired\x01%s\x02 is being unsafe by giving out or requesting a phone number, address, last name, email address, password or account name.'
+ReportPlayerConfirmRudeBehavior = 'You are about to report that \x01Ired\x01%s\x02 is bullying, harassing, or using extreme behavior to disrupt the game.'
+ReportPlayerConfirmBadName = "You are about to report that \x01Ired\x01%s\x02 has created a name that does not follow Disney's House Rules."
 ReportPlayerConfirmCategory = 'We take reporting very seriously. Your report will be viewed by a Moderator who will take appropriate action for anyone breaking our rules. If your account is found to have participated in breaking the rules, or if you make false reports or abuse the "Report a Player" system, a Moderator may take action against your account. Are you absolutely sure you want to report this player?'
 ReportPlayerConfirmReport = 'Thank you! Your report has been sent to a Moderator for review. There is no need to contact us again about the issue. The moderation team will take appropriate action for a player found breaking our rules.'
-ReportPlayerRemovedFriend = 'We have automatically removed \x1Ired\x1%s\x2 from your Friends List.'
-ReportPlayerIgnored = '\x1Ired\x1%s\x2 has automatically been ignored for the remainder of this session.'
+ReportPlayerRemovedFriend = 'We have automatically removed \x01Ired\x01%s\x02 from your Friends List.'
+ReportPlayerIgnored = '\x01Ired\x01%s\x02 has automatically been ignored for the remainder of this session.'
 HOLIDAYIDS_TO_NAMES = {
-    HolidayGlobals.MOTHERSDAY: "Mother's Day",
-    HolidayGlobals.FATHERSDAY: "Father's Day",
-    HolidayGlobals.SAINTPATRICKSDAY: "St. Patrick's Day",
-    HolidayGlobals.FOURTHOFJULY: 'Fourth of July',
-    HolidayGlobals.HALLOWEEN: 'Halloween',
-    HolidayGlobals.WINTERFESTIVAL: 'Winter Festival',
-    HolidayGlobals.NEWYEARS: "New Year's Day",
-    HolidayGlobals.VALENTINESDAY: "Valentine's Day",
-    HolidayGlobals.MARDIGRAS: 'Mardi Gras' }
+    HolidayGlobals.MOTHERSDAY: "Mother's Day", HolidayGlobals.FATHERSDAY: "Father's Day", HolidayGlobals.SAINTPATRICKSDAY: "St. Patrick's Day", HolidayGlobals.FOURTHOFJULY: 'Fourth of July', HolidayGlobals.HALLOWEEN: 'Halloween', HolidayGlobals.WINTERFESTIVAL: 'Winter Festival', HolidayGlobals.NEWYEARS: "New Year's Day", HolidayGlobals.VALENTINESDAY: "Valentine's Day", HolidayGlobals.MARDIGRAS: 'Mardi Gras'
+}
 NO_CURRENT_HOLIDAYS = 'Sorry, there are no holiday events active right now.'
 DoubleGoldStart = makeHeadingString('Double yer gold!', 2) + '\nEarn double gold for land and sea battles, Cannon Defense, Fishing and Ship Repair on land!'
 DoubleGoldStartChat = 'Double yer gold!!\nEarn double gold for land and sea battles, Cannon Defense, Fishing and Ship Repair on land!'
@@ -11275,7 +11180,7 @@ WhitelistScrubList = [
     'arrr',
     'garr',
     'arrrrr']
-WhiteListWarning = 'Words typed in \x1WLEnter\x1red\x2 are shown in \x1WLDisplay\x1italics\x2 and may not be visible to some players.'
+WhiteListWarning = 'Words typed in \x01WLEnter\x01red\x02 are shown in \x01WLDisplay\x01italics\x02 and may not be visible to some players.'
 EmoteCommands = {
     'coin': (EmoteGlobals.EMOTE_COIN_HEADS, EmoteGlobals.EMOTE_COIN_TAILS),
     'dance': EmoteGlobals.EMOTE_DANCE,
@@ -11606,23 +11511,23 @@ ShipPVPQuestUseShip = 'ship'
 ShipPVPQuestUseCannon = 'cannon'
 ShipPVPQuestUseCannonCap = 'Cannon'
 ShipPVPQuestGameName = 'Ship PVP'
-ShipPVPQuestSingleNumA = 'Sink a \x1questObj\x1%s\x2 ship in \x1questObj\x1%s\x2'
-ShipPVPQuestSingleNumB = 'Defeat a \x1questObj\x1%s\x2 pirate in \x1questObj\x1%s\x2'
-ShipPVPQuestSingleAnyNumA = 'Sink a \x1questObj\x1ship\x2 in \x1questObj\x1%s\x2'
-ShipPVPQuestSingleAnyNumB = 'Defeat a \x1questObj\x1pirate\x2 in \x1questObj\x1%s\x2'
-ShipPVPQuestUsingA = ' using a \x1questObj\x1%s\x2'
+ShipPVPQuestSingleNumA = 'Sink a \x01questObj\x01%s\x02 ship in \x01questObj\x01%s\x02'
+ShipPVPQuestSingleNumB = 'Defeat a \x01questObj\x01%s\x02 pirate in \x01questObj\x01%s\x02'
+ShipPVPQuestSingleAnyNumA = 'Sink a \x01questObj\x01ship\x02 in \x01questObj\x01%s\x02'
+ShipPVPQuestSingleAnyNumB = 'Defeat a \x01questObj\x01pirate\x02 in \x01questObj\x01%s\x02'
+ShipPVPQuestUsingA = ' using a \x01questObj\x01%s\x02'
 ShipPVPQuestUsingACap = ' Using A %s'
 ShipPVPQuestWithoutSinking = ' without sinking'
 ShipPVPQuestWithoutSinkingCap = ' Without Sinking'
-ShipPVPQuestMultA = 'Sink \x1questObj\x1%s %s\x2 ships in \x1questObj\x1%s\x2'
-ShipPVPQuestMultB = 'Defeat \x1questObj\x1%s %s\x2 pirates in \x1questObj\x1%s\x2'
-ShipPVPQuestMultAnyA = 'Sink \x1questObj\x1%s ships\x2 in \x1questObj\x1%s\x2'
-ShipPVPQuestMultAnyB = 'Defeat \x1questObj\x1%s pirates\x2 in \x1questObj\x1%s\x2'
-ShipPVPQuestDamageA = 'Do \x1questObj\x1%s\x2 points damage to \x1questObj\x1%s\x2 ships in \x1questObj\x1%s\x2'
-ShipPVPQuestDamageB = 'Do \x1questObj\x1%s\x2 points damage to \x1questObj\x1%s\x2 pirates in \x1questObj\x1%s\x2'
-ShipPVPQuestDamageAnyA = 'Do \x1questObj\x1%s\x2 points of damage to \x1questObj\x1ships\x2 in \x1questObj\x1%s\x2'
-ShipPVPQuestDamageAnyB = 'Do \x1questObj\x1%s\x2 points of damage to \x1questObj\x1pirates\x2 in \x1questObj\x1%s\x2'
-ShipPVPQuestDamageAnyC = 'Do \x1questObj\x1%s\x2 points of damage in \x1questObj\x1%s\x2'
+ShipPVPQuestMultA = 'Sink \x01questObj\x01%s %s\x02 ships in \x01questObj\x01%s\x02'
+ShipPVPQuestMultB = 'Defeat \x01questObj\x01%s %s\x02 pirates in \x01questObj\x01%s\x02'
+ShipPVPQuestMultAnyA = 'Sink \x01questObj\x01%s ships\x02 in \x01questObj\x01%s\x02'
+ShipPVPQuestMultAnyB = 'Defeat \x01questObj\x01%s pirates\x02 in \x01questObj\x01%s\x02'
+ShipPVPQuestDamageA = 'Do \x01questObj\x01%s\x02 points damage to \x01questObj\x01%s\x02 ships in \x01questObj\x01%s\x02'
+ShipPVPQuestDamageB = 'Do \x01questObj\x01%s\x02 points damage to \x01questObj\x01%s\x02 pirates in \x01questObj\x01%s\x02'
+ShipPVPQuestDamageAnyA = 'Do \x01questObj\x01%s\x02 points of damage to \x01questObj\x01ships\x02 in \x01questObj\x01%s\x02'
+ShipPVPQuestDamageAnyB = 'Do \x01questObj\x01%s\x02 points of damage to \x01questObj\x01pirates\x02 in \x01questObj\x01%s\x02'
+ShipPVPQuestDamageAnyC = 'Do \x01questObj\x01%s\x02 points of damage in \x01questObj\x01%s\x02'
 ShipPVPQuestProgNumA = 'A %s %s Defeated In %s'
 ShipPVPQuestProgNumB = 'A %s Defeated In %s'
 ShipPVPQuestProgNumC = '%d/%d %s %ss Defeated In %s'
@@ -11651,14 +11556,11 @@ FeedbackButtonHelp = 'Send Feedback'
 FeedbackFormSend = 'Send'
 FeedbackManageButton = 'Manage Account'
 townfolkHelpText = {
-    1: [
-        "Ready to fly the French colours on that ship of yers?\x7 Be aware that sailing from an island like this, ye must know a thing or two.\x7First, Pirates who choose to embark from this scrap of an island will be thrown into a battle... whether they be wantin' to or not.\x7Second, be wary of the sail colours around ye. That way a pirate knows who's friend and who's foe.\x7And if ye be needin' to check your score, press the ~ button. That gives a ship's score AND its bounty.\x7Pirates earn both for sinkin' enemy ships. The higher a bounty, the more it's worth.\x7Fair winds and good luck, mate... ye be needin' both!"],
-    2: [
-        "Ready to fly the Spanish colours on that ship of yers?\x7Be aware that sailing from an island like this, ye must know a thing or two.\x7First, Pirates who choose to embark from this scrap of an island will be thrown into a battle... whether they be wantin' to or not.\x7Second, be wary of the sail colours around ye. That way a pirate knows who's friend and who's foe.\x7And if ye be needin' to check your score, press the ~ button. That gives a ship's score AND its bounty.\x7Pirates earn both for sinkin' enemy ships. The higher a bounty, the more it's worth.\x7Fair winds and good luck, mate... ye be needin' both!"],
-    3: [
-        "Please excuse me master, Pierre le Porc, he's had a bit of stress lately and isn't feeling so grand.\x7In his... absence, I'll brief ye on the situation and specifics of how the French can use your skills.\x7See, Pirate Lord Le Porc has claimed this island and others as his own.\x7There's only one problem though, he's not the only Pirate Lord lookin' to lay claim on what ain't his, savvy?\x7A Spanish Pirate Lord name of Garcia de la Avaricia thinks he's running these islands too!\x7A pirate like yerself can make earn quite a reputation in this fight and Pierre would be most grateful.\x7So consider yerself a true Frenchmen when ye set sail from this island mate, 'cause the Spanish sure will..."],
-    4: [
-        "Please excuse me master, Garcia de la Avaricia, he's had a bit of stress lately and isn't feeling so grand.\x7In his... absence, I'll brief ye on the situation and specifics of how the Spanish can use your skills.\x7See, Pirate Lord Avaricia has claimed this island and others as his own.\x7There's only one problem though, he's not the only Pirate Lord looking to lay claim on what ain't his, savvy?\x7A French Pirate Lord name of Le Porc thinks he's running these islands too!\x7A pirate like yerself can make earn quite a reputation in this fight and Garcia would be most grateful.\x7So consider yerself a true Spaniard when ye set sail from this island mate, 'cause the French sure will..."] }
+    1: ["Ready to fly the French colours on that ship of yers?\x07 Be aware that sailing from an island like this, ye must know a thing or two.\x07First, Pirates who choose to embark from this scrap of an island will be thrown into a battle... whether they be wantin' to or not.\x07Second, be wary of the sail colours around ye. That way a pirate knows who's friend and who's foe.\x07And if ye be needin' to check your score, press the ~ button. That gives a ship's score AND its bounty.\x07Pirates earn both for sinkin' enemy ships. The higher a bounty, the more it's worth.\x07Fair winds and good luck, mate... ye be needin' both!"],
+    2: ["Ready to fly the Spanish colours on that ship of yers?\x07Be aware that sailing from an island like this, ye must know a thing or two.\x07First, Pirates who choose to embark from this scrap of an island will be thrown into a battle... whether they be wantin' to or not.\x07Second, be wary of the sail colours around ye. That way a pirate knows who's friend and who's foe.\x07And if ye be needin' to check your score, press the ~ button. That gives a ship's score AND its bounty.\x07Pirates earn both for sinkin' enemy ships. The higher a bounty, the more it's worth.\x07Fair winds and good luck, mate... ye be needin' both!"],
+    3: ["Please excuse me master, Pierre le Porc, he's had a bit of stress lately and isn't feeling so grand.\x07In his... absence, I'll brief ye on the situation and specifics of how the French can use your skills.\x07See, Pirate Lord Le Porc has claimed this island and others as his own.\x07There's only one problem though, he's not the only Pirate Lord lookin' to lay claim on what ain't his, savvy?\x07A Spanish Pirate Lord name of Garcia de la Avaricia thinks he's running these islands too!\x07A pirate like yerself can make earn quite a reputation in this fight and Pierre would be most grateful.\x07So consider yerself a true Frenchmen when ye set sail from this island mate, 'cause the Spanish sure will..."],
+    4: ["Please excuse me master, Garcia de la Avaricia, he's had a bit of stress lately and isn't feeling so grand.\x07In his... absence, I'll brief ye on the situation and specifics of how the Spanish can use your skills.\x07See, Pirate Lord Avaricia has claimed this island and others as his own.\x07There's only one problem though, he's not the only Pirate Lord looking to lay claim on what ain't his, savvy?\x07A French Pirate Lord name of Le Porc thinks he's running these islands too!\x07A pirate like yerself can make earn quite a reputation in this fight and Garcia would be most grateful.\x07So consider yerself a true Spaniard when ye set sail from this island mate, 'cause the French sure will..."]
+}
 MAGICWORD_GMNAMETAG = 'GM NameTag Options:\nenable, disable, setString <string>,\nsetColor <red|green|blue|gold|white>'
 CrewMemberAcquired = '%s had joined the Black Pearl Crew!'
 ShowBlackPearlCrew = 'Show Crew'
@@ -11671,9 +11573,9 @@ ZombieNoBoats = 'Jolly Roger commands you to attack the island!'
 ZombieNoPeople = 'We will never serve Jolly Roger!'
 ShipNeedCompass = 'You need to get the compass from Tia Dalma before you can board a ship'
 ShipRepaired = 'Your ship has been repaired.'
-TargetsInHere = '\n\x1questObj\x1Targets are in this area!'
-TargetsCloseBy = '\n\x1questObj\x1Targets are close by!'
-TargetsInThere = '\n\x1questObj\x1Closest targets are in %s'
+TargetsInHere = '\n\x01questObj\x01Targets are in this area!'
+TargetsCloseBy = '\n\x01questObj\x01Targets are close by!'
+TargetsInThere = '\n\x01questObj\x01Closest targets are in %s'
 
 def getServerTimeString(secondsSinceEpoch):
     return 'Server Time: %s' % datetime.datetime.fromtimestamp(secondsSinceEpoch).ctime()
@@ -11726,9 +11628,9 @@ CannonDefense = {
     'WaveResults': 'Wave Results',
     'TreasureStolen': 'Attackers stole:',
     'TreasureRemaining': 'Wealth remaining:',
-    'TreasureEarned': 'On shore wealth has increased by \x1CopperGold\x1%s treasure\x2',
-    'PayShare': 'Your Pay Share: \x1CopperGold\x1%s Gold\x2',
-    'PayShareBonus': 'Your Pay Share: \x1CopperGold\x1%s Gold\x2 \x1CPGreen\x1(+%s Holiday Bonus)\x2',
+    'TreasureEarned': 'On shore wealth has increased by \x01CopperGold\x01%s treasure\x02',
+    'PayShare': 'Your Pay Share: \x01CopperGold\x01%s Gold\x02',
+    'PayShareBonus': 'Your Pay Share: \x01CopperGold\x01%s Gold\x02 \x01CPGreen\x01(+%s Holiday Bonus)\x02',
     'TimePlayed': 'Time Played:',
     'GoldEarned': 'Gold Earned:',
     'Report': 'Defender Report',
